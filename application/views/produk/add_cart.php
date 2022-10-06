@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row mt-3">
+        <h4> <span class="badge bg-warning text-dark">Shopping Cart</span></h4>
+
+        <table class="table table-bordered table table-success table-striped text-center">
+            <tr class="table-success">
+                <th>No</th>
+                <th>Name Produk</th>
+                <th>Total</th>
+                <th>Price</th>
+                <th>Sub-Total</th>
+            </tr>
+
+            <?php
+            $no = 1;
+            foreach ($this->cart->contents() as $items) : ?>
+
+                <tr class="text-black">
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo $items['name'] ?></td>
+                    <td><?php echo $items['qty'] ?></td>
+                    <td>Rp. <?php echo number_format($items['price'], 0, ',', '.') ?></td>
+                    <td>Rp. <?php echo number_format($items['subtotal'], 0, ',', '.') ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <tr class="text-black">
+                <td colspan="4"></td>
+                <td>Rp. <?php echo number_format($this->cart->total(), 0, ',', '.') ?></td>
+            </tr>
+        </table>
+
+        <div align="right">
+            <a href="<?php echo base_url('produk') ?>">
+                <div class="btn btn-sm btn-primary">Continue shopping</div>
+            </a>
+            <a href="<?php echo base_url('produk/payment') ?>">
+                <div class="btn btn-sm btn-success">Payment</div>
+            </a>
+            <a href="<?php echo base_url('produk/delete_cart') ?>">
+                <div class="btn btn-sm btn-danger">Delete cart</div>
+            </a>
+        </div>
+    </div>
+</div>
